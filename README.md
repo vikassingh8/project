@@ -8,9 +8,7 @@ A simple React Native app that displays a "Quote of the Day" with the ability to
 - Refresh the quote manually.
 - Capture the view and share the captured image.
 
-## Screenshots
 
-![App Screenshot](screenshots/screenshot.png)
 
 ## Getting Started
 
