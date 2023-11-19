@@ -65,8 +65,30 @@ export default function App() {
     }
   };
 
+  const updateQuoteDaily = () => {
+    // Get the current time
+    const now = new Date();
+    // Set the target time for the next day at 12 AM
+    const targetTime = new Date(now);
+    targetTime.setHours(24, 0, 0, 0);
+
+    // Calculate the time difference until the next day at 12 AM
+    const timeUntilUpdate = targetTime - now;
+
+    // Schedule the quote update at the target time
+    setTimeout(() => {
+      // Update the quote
+      quotesHandler();
+      // Reschedule for the next day
+      setInterval(updateQuoteDaily, 24 * 60 * 60 * 1000);
+    }, timeUntilUpdate);
+  };
+
   useEffect(() => {
+    // Initial quote update
     quotesHandler();
+    // Schedule daily quote updates
+    updateQuoteDaily();
   }, []);
 
   return (
@@ -152,7 +174,7 @@ const styles = StyleSheet.create({
   quoteText: {
     fontSize: 18,
     textAlign: 'center',
-    color: '#555',
+    color: '#ffff',
   },
   refreshButton: {
     backgroundColor: '#4CAF50',
